@@ -11,13 +11,13 @@ Returns:
     string: Clothing item class name
 """
 # %%
-import numpy as np
+# import numpy as np
 import pandas as pd
 import tensorflow as tf
 import matplotlib.pyplot as plt
-import seaborn as sns
+# import seaborn as sns
 import tensorflow.keras.layers as layers
-%matplotlib inline
+# %matplotlib inline
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -182,4 +182,49 @@ model_callback.fit(train_images, train_labels,
 
 # %%
 pd.Series(model_callback.evaluate(test_images, test_labels),
+          index=model.metrics_names, name=85)
+
+
+# %%
+
+class AccCallback(tf.keras.callbacks.Callback):
+    """
+    Accuracy Callback.
+
+    Creates a callback that on epoch end
+    checks the accuracy, and stops the trainign
+    if it's above 99%.
+
+    Args:
+        None
+
+    Returns:
+        callback: a tf.keras.callbacks.Callback object
+    """
+
+    def on_epoch_end(self, epoch, logs={}):
+        """Check the accuracy, and stops the trainign if it's above 99%."""
+        if logs.get('accuracy') > 0.99:
+            print('\nReached 99% Accuracy\nStopping Training!')
+            self.model.stop_training = True
+
+
+model_callback_2 = tf.keras.models.Sequential([
+    layers.Flatten(),
+    layers.Dense(128, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+
+callbacks = AccCallback()
+
+model_callback_2.compile(optimizer='adam',
+                         loss='sparse_categorical_crossentropy',
+                         metrics=['accuracy'])
+
+model_callback_2.fit(train_images, train_labels,
+                     epochs=30,
+                     callbacks=callbacks)
+
+# %%
+pd.Series(model_callback_2.evaluate(test_images, test_labels),
           index=model.metrics_names, name=85)

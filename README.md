@@ -13,7 +13,12 @@ by analyzing their photo.
 > Basic demonstration of how convolutions work,
 also their application in deep learning models.
 
-[C1W4.py](C1W4.py)
+[C1W4_a.py](C1W4_a.py)
 > Builds a model on the Human or Horses dataset,
 using ImageDataGenerator to prepare and augment the dataset,
 finally a visualization of the intermediate layers activations.
+
+
+[C1W4_b.py](C1W4_b.py)
+> The happy or sad dataset, contains 80 images of emoji-like faces,
+40 happy and 40 sad.

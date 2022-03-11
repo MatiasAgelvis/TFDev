@@ -18,7 +18,10 @@ also their application in deep learning models.
 using ImageDataGenerator to prepare and augment the dataset,
 finally a visualization of the intermediate layers activations.
 
-
 [C1W4_b.py](C1W4_b.py)
 > The happy or sad dataset, contains 80 images of emoji-like faces,
 40 happy and 40 sad.
+
+[C2W1_a.py](C2W1_a.py)
+> Classify the Dogs vs. Cats dataset, but leads to overfitting,
+in the next notebook the methods to prevent this situation are introdiced.

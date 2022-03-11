@@ -2,7 +2,7 @@
 Basics of convolutions.
 
 First its a demonstration of how convolutions work,
-then their aplication in deep learning models.
+then their application in deep learning models.
 """
 
 # %% md
